@@ -8,6 +8,8 @@ let totalPares = 0;
 let temaMemory = "filmes";
 let dificuldadeMemory = "facil";
 
+const API_BASE = "https://quiz-lps.onrender.com";
+
 // Seleciona tema do Memory
 function selecionarMemoryTema(tema) {
     temaMemory = tema;
@@ -20,7 +22,7 @@ async function iniciarMemory(dificuldade = dificuldadeMemory) {
     dificuldadeMemory = dificuldade;
 
     try {
-        const response = await fetch(`https://quiz-lps.onrender.com/memory/${temaMemory}/${dificuldade}`);
+        const response = await fetch(`${API_BASE}/memory/${temaMemory}/${dificuldade}`);
         const data = await response.json();
 
         cartas = data.cartas;
@@ -56,7 +58,7 @@ function renderizarTabuleiro() {
     });
 }
 
-function virarCarta(div, index) {
+async function virarCarta(div, index) {
     if (bloqueado || div.classList.contains("aberta")) return;
 
     div.classList.add("aberta");
@@ -70,12 +72,32 @@ function virarCarta(div, index) {
 
         if (cartas[primeiraCarta.index] === cartas[segundaCarta.index]) {
             paresEncontrados++;
+
+            // Pontuação por par:
+            const usuario_id = localStorage.getItem("usuario_id") || "anonimo";
+            let pontos = 1;
+            if (dificuldadeMemory === "medio") pontos = 2;
+            else if (dificuldadeMemory === "dificil") pontos = 3;
+
+            try {
+                await fetch(`${API_BASE}/pontuacao/${usuario_id}/${pontos}`, {
+                    method: "POST"
+                });
+
+                if (typeof buscarPontuacaoTotal === "function") {
+                    buscarPontuacaoTotal();
+                }
+            } catch (err) {
+                console.error("Erro ao registrar pontos:", err);
+            }
+
             setTimeout(() => {
                 primeiraCarta.div.style.backgroundColor = "#28a745";
                 segundaCarta.div.style.backgroundColor = "#28a745";
                 resetCartas();
                 if (paresEncontrados === totalPares) fimMemory();
             }, 500);
+
         } else {
             setTimeout(() => {
                 primeiraCarta.div.classList.remove("aberta");
@@ -88,6 +110,7 @@ function virarCarta(div, index) {
     }
 }
 
+
 function resetCartas() {
     primeiraCarta = null;
     segundaCarta = null;
@@ -95,22 +118,29 @@ function resetCartas() {
     atualizarPontuacao();
 }
 
-function fimMemory() {
+async function fimMemory() {
+    await registrarPontosBackend();
     setTimeout(() => {
         alert(`Parabéns! Você encontrou todos os pares!`);
     }, 300);
 }
 
-function atualizarPontuacao() {
-    document.getElementById("pontuacaoMemory").textContent = `Pares encontrados: ${paresEncontrados} / ${totalPares}`;
+// ✅ Apenas adicionamos o sistema de pontos
+async function registrarPontosBackend() {
+    try {
+        await fetch(`${API_BASE}/pontos/memory`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" }
+        });
+        if (typeof buscarPontuacaoTotal === "function") {
+            buscarPontuacaoTotal();
+        }
+    } catch (err) {
+        console.error("Erro ao registrar pontos:", err);
+    }
 }
 
-// Responsividade para mobile
-window.addEventListener('resize', () => {
-    const tabuleiro = document.getElementById("tabuleiro");
-    if (window.innerWidth <= 600) {
-        tabuleiro.style.gridTemplateColumns = "repeat(3, 70px)";
-    } else {
-        tabuleiro.style.gridTemplateColumns = `repeat(${Math.sqrt(cartas.length)}, 80px)`;
-    }
-});
+function atualizarPontuacao() {
+    document.getElementById("pontuacaoMemory").textContent = 
+        `Pares encontrados: ${paresEncontrados} / ${totalPares}`;
+}
