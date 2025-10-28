@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    transition: all 0.3s ease;
+}
+
+#menu button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#quiz button {
+    display: block;
+    margin: 5px 0;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Estilos por tema */
+.geografia {
+    background-color: #e0f7e9;
+    color: #2e7d32;
+}
+
+.filmes {
+    background-color: #fff8e1;
+    color: #f57f17;
+}
+
+.historia {
+    background-color: #f3e5f5;
+    color: #6a1b9a;
+}
+
+.technology {
+    background-color: #e1f5fe;
+    color: #0277bd;
+}
+
+#resultadoFinal {
+    margin-top: 20px;
+}
+
+#quiz p {
+    font-size: 18px;
+    font-weight: bold;
+}

@@ -1,0 +1,4 @@
+[
+  {"id":1,"pergunta":"Qual é a capital do Brasil?","alternativas":["São Paulo","Rio de Janeiro","Brasília","Belo Horizonte"],"correta":2},
+  {"id":2,"pergunta":"Qual o maior oceano do mundo?","alternativas":["Atlântico","Índico","Ártico","Pacífico"],"correta":3}
+]

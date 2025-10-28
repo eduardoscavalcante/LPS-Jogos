@@ -1,0 +1,4 @@
+[
+  {"id":1,"pergunta":"Qual empresa criou o sistema operacional Windows?","alternativas":["Apple","Microsoft","Google","IBM"],"correta":1},
+  {"id":2,"pergunta":"O que significa 'CPU'?","alternativas":["Central Process Unit","Central Processing Unit","Computer Power Unit","Core Processing Unit"],"correta":1}
+]
