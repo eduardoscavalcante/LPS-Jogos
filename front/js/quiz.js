@@ -12,7 +12,7 @@ function selecionarTema(tema) {
 
 async function iniciarQuiz(dificuldade) {
     dificuldadeAtual = dificuldade;
-    const response = await fetch(`https://quiz-lps.onrender.com/perguntas/${temaAtual}`);
+    const response = await fetch(`https://quiz-lps.onrender.com/quiz/${temaAtual}`);
     let data = await response.json();
 
     // filtra por dificuldade
