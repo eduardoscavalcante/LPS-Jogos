@@ -34,7 +34,7 @@
         let pontos = 0;
 
         async function iniciarQuiz(tema) {
-            const response = await fetch(`http://127.0.0.1:8000/perguntas/${tema}`);
+            const response = await fetch(`https://quiz-lps.onrender.com/perguntas/${tema}`);
             perguntas = await response.json();
             indice = 0;
             pontos = 0;
