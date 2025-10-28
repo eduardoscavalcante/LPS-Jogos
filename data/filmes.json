@@ -1,12 +1,34 @@
 [
   {"id":1,"pergunta":"Quem dirigiu Titanic?","alternativas":["James Cameron","Steven Spielberg","Ridley Scott","Martin Scorsese"],"correta":0,"dificuldade":"facil"},
   {"id":2,"pergunta":"Em qual franquia aparece Darth Vader?","alternativas":["Star Trek","Star Wars","Avatar","Matrix"],"correta":1,"dificuldade":"facil"},
-  {"id":3,"pergunta":"Qual ator interpretou o Coringa em 2008?","alternativas":["Heath Ledger","Joaquin Phoenix","Jack Nicholson","Jared Leto"],"correta":0,"dificuldade":"medio"},
-  {"id":4,"pergunta":"Qual filme ganhou o Oscar de Melhor Filme em 2020?","alternativas":["Parasita","1917","Coringa","Ford vs Ferrari"],"correta":0,"dificuldade":"medio"},
-  {"id":5,"pergunta":"Quem é o criador da série Harry Potter?","alternativas":["J.K. Rowling","George R.R. Martin","J.R.R. Tolkien","Suzanne Collins"],"correta":0,"dificuldade":"facil"},
-  {"id":6,"pergunta":"Qual é o filme mais lucrativo de todos os tempos?","alternativas":["Avatar","Titanic","Vingadores: Ultimato","Star Wars"],"correta":2,"dificuldade":"medio"},
-  {"id":7,"pergunta":"Qual ator fez Neo em Matrix?","alternativas":["Keanu Reeves","Brad Pitt","Will Smith","Tom Cruise"],"correta":0,"dificuldade":"facil"},
-  {"id":8,"pergunta":"Qual é o primeiro filme da Marvel Studios?","alternativas":["Homem de Ferro","Thor","Capitão América","Hulk"],"correta":0,"dificuldade":"medio"},
-  {"id":9,"pergunta":"Quem dirigiu Pulp Fiction?","alternativas":["Quentin Tarantino","Christopher Nolan","Steven Spielberg","Martin Scorsese"],"correta":0,"dificuldade":"dificil"},
-  {"id":10,"pergunta":"Qual é o nome do hobbit protagonista de O Senhor dos Anéis?","alternativas":["Frodo","Sam","Bilbo","Pippin"],"correta":0,"dificuldade":"facil"}
+  {"id":3,"pergunta":"Quem é o criador da série Harry Potter?","alternativas":["J.K. Rowling","George R.R. Martin","J.R.R. Tolkien","Suzanne Collins"],"correta":0,"dificuldade":"facil"},
+  {"id":4,"pergunta":"Qual ator fez Neo em Matrix?","alternativas":["Keanu Reeves","Brad Pitt","Will Smith","Tom Cruise"],"correta":0,"dificuldade":"facil"},
+  {"id":5,"pergunta":"Qual filme tem a famosa frase 'I'll be back'?","alternativas":["Exterminador do Futuro","RoboCop","Robocop 2","Blade Runner"],"correta":0,"dificuldade":"facil"},
+  {"id":6,"pergunta":"Qual é a animação mais lucrativa da Disney?","alternativas":["O Rei Leão","Frozen","Toy Story 3","Aladdin"],"correta":1,"dificuldade":"facil"},
+  {"id":7,"pergunta":"Quem interpretou Jack Sparrow?","alternativas":["Johnny Depp","Orlando Bloom","Tom Hanks","Leonardo DiCaprio"],"correta":0,"dificuldade":"facil"},
+  {"id":8,"pergunta":"Qual filme se passa na Terra Média?","alternativas":["O Senhor dos Anéis","Harry Potter","Star Wars","Matrix"],"correta":0,"dificuldade":"facil"},
+  {"id":9,"pergunta":"Quem dirigiu Jurassic Park?","alternativas":["Steven Spielberg","James Cameron","Quentin Tarantino","Peter Jackson"],"correta":0,"dificuldade":"facil"},
+  {"id":10,"pergunta":"Em que ano foi lançado o primeiro Vingadores?","alternativas":["2012","2010","2014","2011"],"correta":0,"dificuldade":"facil"},
+
+  {"id":11,"pergunta":"Quem dirigiu 'O Grande Lebowski'?","alternativas":["Coen Brothers","Steven Spielberg","Christopher Nolan","Martin Scorsese"],"correta":0,"dificuldade":"medio"},
+  {"id":12,"pergunta":"Qual filme de David Lynch se passa em uma cidade cheia de segredos e mistérios?","alternativas":["Twin Peaks: Fire Walk With Me","Eraserhead","Blue Velvet","Veludo Azul"],"correta":2,"dificuldade":"medio"},
+  {"id":13,"pergunta":"Quem dirigiu 'Pink Flamingos', filme cult de 1972?","alternativas":["John Waters","David Lynch","Darren Aronofsky","Werner Herzog"],"correta":0,"dificuldade":"medio"},
+  {"id":14,"pergunta":"Qual filme de Wong Kar-wai é famoso pelo estilo visual romântico e melancólico?","alternativas":["In the Mood for Love","Chungking Express","Happy Together","2046"],"correta":0,"dificuldade":"medio"},
+  {"id":15,"pergunta":"Qual filme italiano dirigido por Federico Fellini mistura realidade e fantasia de forma surreal?","alternativas":["8½","A Doce Vida","Amarcord","Roma"],"correta":0,"dificuldade":"medio"},
+  {"id":16,"pergunta":"Em 'Brazil', filme de Terry Gilliam, qual é o tema central?","alternativas":["Burocracia distópica","Viagem no tempo","Conspiração alienígena","Crise financeira"],"correta":0,"dificuldade":"medio"},
+  {"id":17,"pergunta":"Qual diretor é famoso por filmes de terror psicológico e suspense, como 'Repulsa ao Sexo' e 'Desejo e Perigo'?","alternativas":["Roman Polanski","Alfred Hitchcock","Stanley Kubrick","Dario Argento"],"correta":0,"dificuldade":"medio"},
+  {"id":18,"pergunta":"Qual filme de Lars von Trier causou polêmica por cenas de violência e sexualidade explícita?","alternativas":["Dogville","Anticristo","Melancolia","Dançando no Escuro"],"correta":1,"dificuldade":"medio"},
+  {"id":19,"pergunta":"Quem dirigiu 'Cidade dos Sonhos' (Mulholland Drive)?","alternativas":["David Lynch","Terrence Malick","Paul Thomas Anderson","Spike Jonze"],"correta":0,"dificuldade":"medio"},
+  {"id":20,"pergunta":"Qual filme de Jean-Luc Godard é ícone da Nouvelle Vague francesa?","alternativas":["Acossado","O Desprezo","A Mulher é Mulher","Viver a Vida"],"correta":0,"dificuldade":"medio"}
+
+  {"id":21,"pergunta":"Quem dirigiu 'Eraserhead', um filme surreal de 1977?","alternativas":["David Lynch","Stanley Kubrick","John Waters","Andrei Tarkovsky"],"correta":0,"dificuldade":"dificil"},
+  {"id":22,"pergunta":"Qual filme de John Waters se tornou cult por seu humor transgressivo?","alternativas":["Pink Flamingos","Hairspray","Desperate Living","Polyester"],"correta":0,"dificuldade":"dificil"},
+  {"id":23,"pergunta":"Qual filme de Andrei Tarkovsky é conhecido por suas longas tomadas e espiritualidade poética?","alternativas":["Stalker","Solaris","O Espelho","Andrei Rublev"],"correta":0,"dificuldade":"dificil"},
+  {"id":24,"pergunta":"Qual diretor é conhecido por suas composições simétricas e estilo único em filmes como 'O Grande Hotel Budapeste'?","alternativas":["Wes Anderson","Quentin Tarantino","Jean-Pierre Jeunet","Tim Burton"],"correta":0,"dificuldade":"dificil"},
+  {"id":25,"pergunta":"Quem dirigiu 'L’Avventura', clássico do cinema italiano moderno?","alternativas":["Michelangelo Antonioni","Federico Fellini","Roberto Rossellini","Luchino Visconti"],"correta":0,"dificuldade":"dificil"},
+  {"id":26,"pergunta":"Qual filme de Ingmar Bergman explora a fé, a morte e a existência humana?","alternativas":["O Sétimo Selo","Morangos Silvestres","Persona","Gritos e Sussurros"],"correta":0,"dificuldade":"dificil"},
+  {"id":27,"pergunta":"Qual filme de Lars von Trier é conhecido por seu estilo experimental e narrativa não linear?","alternativas":["Dogville","Melancolia","Anticristo","Dançando no Escuro"],"correta":0,"dificuldade":"dificil"},
+  {"id":28,"pergunta":"Quem dirigiu '8½', obra-prima sobre o cinema e a imaginação?","alternativas":["Federico Fellini","Roberto Rossellini","Michelangelo Antonioni","Luchino Visconti"],"correta":0,"dificuldade":"dificil"},
+  {"id":29,"pergunta":"Qual filme de Stanley Kubrick mistura guerra, humor negro e sátira política?","alternativas":["Dr. Fantástico","Laranja Mecânica","Barry Lyndon","O Iluminado"],"correta":0,"dificuldade":"dificil"},
+  {"id":30,"pergunta":"Qual filme de Jean-Luc Godard revolucionou a linguagem cinematográfica nos anos 60?","alternativas":["Acossado","O Desprezo","Alphaville","Viver a Vida"],"correta":0,"dificuldade":"dificil"}
 ]

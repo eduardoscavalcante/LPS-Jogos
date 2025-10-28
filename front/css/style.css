@@ -77,10 +77,44 @@ button:hover {
 button.correct { background-color: #28a745 !important; color: #fff !important; }
 button.wrong { background-color: #dc3545 !important; color: #fff !important; }
 
+/* Memory Game */
+.tabuleiro {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    grid-gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.carta {
+    width: 80px;
+    height: 80px;
+    background-color: #272727;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;      /* centraliza verticalmente */
+    justify-content: center;  /* centraliza horizontalmente */
+    font-size: 16px;          /* reduz um pouco para caber nomes maiores */
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s;
+    text-align: center;       /* centraliza múltiplas linhas */
+    padding: 5px;             /* evita que o texto encoste nas bordas */
+    word-wrap: break-word;    /* quebra palavras longas */
+    overflow: hidden;         /* impede que passe do quadrado */
+}
+
+.carta.aberta {
+    background-color: #00d1ff;
+    color: #121212;
+}
+
 /* Responsivo */
 @media (max-width: 600px) {
     h1 { font-size: 26px; }
     button { font-size: 14px; padding: 10px 18px; }
     .pergunta { font-size: 18px; }
     .barra { height: 16px; }
+    .tabuleiro { grid-template-columns: repeat(3, 70px); grid-gap: 10px; }
+    .carta { width: 70px; height: 70px; font-size: 20px; }
 }
