@@ -1,0 +1,5 @@
+{
+    "facil": ["Egito","Roma","Napoleão","Guerra"],
+    "medio": ["Egito","Roma","Napoleão","Guerra","Revolução","Império"],
+    "dificil": ["Egito","Roma","Napoleão","Guerra","Revolução","Império","Cavaleiro","Renascença"]
+}

@@ -64,6 +64,10 @@ function verificarResposta(resp, botao) {
     if (resp === atual.correta) {
         pontos++;
         botao.classList.add("correct");
+        // Adiciona ponto global
+        if (typeof adicionarPontos === "function") {
+            adicionarPontos(1);
+        }
     } else {
         botao.classList.add("wrong");
         botoes[atual.correta].classList.add("correct");

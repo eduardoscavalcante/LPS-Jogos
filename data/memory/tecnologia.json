@@ -1,0 +1,5 @@
+{
+    "facil": ["Python","HTML","JavaScript","API"],
+    "medio": ["Python","HTML","JavaScript","API","Banco","IA"],
+    "dificil": ["Python","HTML","JavaScript","API","Banco","IA","Computador","Robô"]
+}

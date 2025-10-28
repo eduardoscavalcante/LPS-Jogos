@@ -8,34 +8,38 @@ let totalPares = 0;
 let temaMemory = "filmes";
 let dificuldadeMemory = "facil";
 
-const temas = {
-    filmes: ["Titanic","Matrix","Coringa","Avatar","Star Wars","Jurassic Park","Inception","Shrek"],
-    geografia: ["Brasil","China","Egito","Austrália","Canadá","Itália","Japão","Espanha"],
-    historia: ["Egito","Roma","Napoleão","Guerra","Revolução","Império","Cavaleiro","Renascença"],
-    tecnologia: ["Python","HTML","JavaScript","API","Banco","IA","Computador","Robô"]
-};
+// Seleciona tema do Memory
+function selecionarMemoryTema(tema) {
+    temaMemory = tema;
+    document.getElementById("memory-menu").style.display = "none";
+    document.getElementById("memory-dificuldade").style.display = "block";
+}
 
-function iniciarMemory(dificuldade=dificuldadeMemory) {
+// Inicia Memory consumindo a API do microservice
+async function iniciarMemory(dificuldade = dificuldadeMemory) {
     dificuldadeMemory = dificuldade;
 
-    let pares = 4;
-    if(dificuldade==="medio") pares=6;
-    if(dificuldade==="dificil") pares=8;
-    totalPares = pares;
+    try {
+        const response = await fetch(`https://quiz-lps.onrender.com/memory/${temaMemory}/${dificuldade}`);
+        const data = await response.json();
 
-    let cartasTema = temas[temaMemory].slice(0, pares);
-    cartas = shuffle([...cartasTema, ...cartasTema]);
+        cartas = data.cartas;
+        totalPares = data.pares_total;
 
-    primeiraCarta = null;
-    segundaCarta = null;
-    bloqueado = false;
-    paresEncontrados = 0;
+        primeiraCarta = null;
+        segundaCarta = null;
+        bloqueado = false;
+        paresEncontrados = 0;
 
-    document.getElementById("memory-dificuldade").style.display = "none";
-    document.getElementById("memory-game").style.display = "block";
+        document.getElementById("memory-dificuldade").style.display = "none";
+        document.getElementById("memory-game").style.display = "block";
 
-    renderizarTabuleiro();
-    atualizarPontuacao();
+        renderizarTabuleiro();
+        atualizarPontuacao();
+    } catch (err) {
+        alert("Erro ao carregar o Memory Game. Verifique o microservice.");
+        console.error(err);
+    }
 }
 
 function renderizarTabuleiro() {
@@ -53,24 +57,24 @@ function renderizarTabuleiro() {
 }
 
 function virarCarta(div, index) {
-    if(bloqueado || div.classList.contains("aberta")) return;
+    if (bloqueado || div.classList.contains("aberta")) return;
 
     div.classList.add("aberta");
     div.textContent = cartas[index];
 
-    if(!primeiraCarta) {
-        primeiraCarta = {div, index};
+    if (!primeiraCarta) {
+        primeiraCarta = { div, index };
     } else {
-        segundaCarta = {div, index};
+        segundaCarta = { div, index };
         bloqueado = true;
 
-        if(cartas[primeiraCarta.index] === cartas[segundaCarta.index]) {
+        if (cartas[primeiraCarta.index] === cartas[segundaCarta.index]) {
             paresEncontrados++;
             setTimeout(() => {
                 primeiraCarta.div.style.backgroundColor = "#28a745";
                 segundaCarta.div.style.backgroundColor = "#28a745";
                 resetCartas();
-                if(paresEncontrados === totalPares) fimMemory();
+                if (paresEncontrados === totalPares) fimMemory();
             }, 500);
         } else {
             setTimeout(() => {
@@ -101,10 +105,12 @@ function atualizarPontuacao() {
     document.getElementById("pontuacaoMemory").textContent = `Pares encontrados: ${paresEncontrados} / ${totalPares}`;
 }
 
-function shuffle(array) {
-    for(let i = array.length - 1; i > 0; i--){
-        let j = Math.floor(Math.random() * (i+1));
-        [array[i], array[j]] = [array[j], array[i]];
+// Responsividade para mobile
+window.addEventListener('resize', () => {
+    const tabuleiro = document.getElementById("tabuleiro");
+    if (window.innerWidth <= 600) {
+        tabuleiro.style.gridTemplateColumns = "repeat(3, 70px)";
+    } else {
+        tabuleiro.style.gridTemplateColumns = `repeat(${Math.sqrt(cartas.length)}, 80px)`;
     }
-    return array;
-}
+});

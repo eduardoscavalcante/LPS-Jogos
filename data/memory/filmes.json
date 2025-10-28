@@ -1,0 +1,5 @@
+{
+    "facil": ["Titanic","Matrix","Coringa","Avatar"],
+    "medio": ["Titanic","Matrix","Coringa","Avatar","Star Wars","Jurassic Park"],
+    "dificil": ["Titanic","Matrix","Coringa","Avatar","Star Wars","Jurassic Park","Inception","Shrek"]
+}

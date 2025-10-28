@@ -1,0 +1,5 @@
+{
+    "facil": ["Brasil","China","Egito","Austrália"],
+    "medio": ["Brasil","China","Egito","Austrália","Canadá","Itália"],
+    "dificil": ["Brasil","China","Egito","Austrália","Canadá","Itália","Japão","Espanha"]
+}
