@@ -1,4 +1,12 @@
 [
-  {"id":1,"pergunta":"Quem dirigiu o filme Titanic?","alternativas":["James Cameron","Steven Spielberg","Ridley Scott","Martin Scorsese"],"correta":0},
-  {"id":2,"pergunta":"Em qual franquia aparece o personagem Darth Vader?","alternativas":["Star Trek","Star Wars","Avatar","Matrix"],"correta":1}
+  {"id":1,"pergunta":"Quem dirigiu Titanic?","alternativas":["James Cameron","Steven Spielberg","Ridley Scott","Martin Scorsese"],"correta":0,"dificuldade":"facil"},
+  {"id":2,"pergunta":"Em qual franquia aparece Darth Vader?","alternativas":["Star Trek","Star Wars","Avatar","Matrix"],"correta":1,"dificuldade":"facil"},
+  {"id":3,"pergunta":"Qual ator interpretou o Coringa em 2008?","alternativas":["Heath Ledger","Joaquin Phoenix","Jack Nicholson","Jared Leto"],"correta":0,"dificuldade":"medio"},
+  {"id":4,"pergunta":"Qual filme ganhou o Oscar de Melhor Filme em 2020?","alternativas":["Parasita","1917","Coringa","Ford vs Ferrari"],"correta":0,"dificuldade":"medio"},
+  {"id":5,"pergunta":"Quem é o criador da série Harry Potter?","alternativas":["J.K. Rowling","George R.R. Martin","J.R.R. Tolkien","Suzanne Collins"],"correta":0,"dificuldade":"facil"},
+  {"id":6,"pergunta":"Qual é o filme mais lucrativo de todos os tempos?","alternativas":["Avatar","Titanic","Vingadores: Ultimato","Star Wars"],"correta":2,"dificuldade":"medio"},
+  {"id":7,"pergunta":"Qual ator fez Neo em Matrix?","alternativas":["Keanu Reeves","Brad Pitt","Will Smith","Tom Cruise"],"correta":0,"dificuldade":"facil"},
+  {"id":8,"pergunta":"Qual é o primeiro filme da Marvel Studios?","alternativas":["Homem de Ferro","Thor","Capitão América","Hulk"],"correta":0,"dificuldade":"medio"},
+  {"id":9,"pergunta":"Quem dirigiu Pulp Fiction?","alternativas":["Quentin Tarantino","Christopher Nolan","Steven Spielberg","Martin Scorsese"],"correta":0,"dificuldade":"dificil"},
+  {"id":10,"pergunta":"Qual é o nome do hobbit protagonista de O Senhor dos Anéis?","alternativas":["Frodo","Sam","Bilbo","Pippin"],"correta":0,"dificuldade":"facil"}
 ]

@@ -1,97 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz LPS</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz LPS</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Quiz LPS</h1>
+<div class="container">
+    <h1 id="tema-titulo">Quiz LPS</h1>
 
-    <div id="menu">
-        <button onclick="iniciarQuiz('geografia')">Quiz de Geografia</button>
-        <button onclick="iniciarQuiz('filmes')">Quiz de Filmes</button>
-        <button onclick="iniciarQuiz('historia')">Quiz de História</button>
-        <button onclick="iniciarQuiz('technology')">Quiz de Tecnologia</button>
+    <div id="menu" class="center">
+        <h2>Selecione o tema</h2>
+        <button onclick="selecionarTema('geografia')">Geografia</button>
+        <button onclick="selecionarTema('filmes')">Filmes</button>
+        <button onclick="selecionarTema('historia')">História</button>
+        <button onclick="selecionarTema('technology')">Tecnologia</button>
+    </div>
+
+    <div id="dificuldade" style="display:none;">
+        <h2>Escolha a dificuldade</h2>
+        <button onclick="iniciarQuiz('facil')">Fácil</button>
+        <button onclick="iniciarQuiz('medio')">Médio</button>
+        <button onclick="iniciarQuiz('dificil')">Difícil</button>
+        <button onclick="iniciarQuiz('todos')">Todos</button>
     </div>
 
     <div id="quiz" style="display:none;">
-        <p id="pergunta"></p>
-        <div id="alternativas"></div>
-        <p id="progresso"></p>
+        <p id="pergunta" class="pergunta"></p>
+        <div id="alternativas" class="alternativas"></div>
+        <div class="progresso-container">
+            <div id="barra-progresso" class="barra"></div>
+        </div>
+        <button id="btn-proxima" onclick="proximaPergunta()" style="display:none;">Próxima Pergunta</button>
     </div>
 
     <div id="resultadoFinal" style="display:none;">
         <h2>Fim do Quiz!</h2>
-        <p id="pontuacao"></p>
+        <p id="pontuacao" class="resultado"></p>
         <button onclick="voltarMenu()">Voltar ao Menu</button>
     </div>
+</div>
 
-    <script>
-        let perguntas = [];
-        let indice = 0;
-        let pontos = 0;
+<script>
+let perguntas = [];
+let indice = 0;
+let pontos = 0;
+let temaAtual = "";
+let dificuldadeAtual = "todos";
 
-        async function iniciarQuiz(tema) {
-            const response = await fetch(`https://quiz-lps.onrender.com/perguntas/${tema}`);
-            perguntas = await response.json();
-            indice = 0;
-            pontos = 0;
+function selecionarTema(tema) {
+    temaAtual = tema;
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("dificuldade").style.display = "block";
+}
 
-            document.getElementById("menu").style.display = "none";
-            document.getElementById("resultadoFinal").style.display = "none";
-            document.getElementById("quiz").style.display = "block";
+async function iniciarQuiz(dificuldade) {
+    dificuldadeAtual = dificuldade;
+    const response = await fetch(`https://quiz-lps.onrender.com/perguntas/${temaAtual}`);
+    let data = await response.json();
 
-            // Remove todas classes antigas
-            document.body.className = "";
-            // Adiciona classe do tema
-            document.body.classList.add(tema.toLowerCase());
+    // filtra por dificuldade
+    perguntas = data.filter(q => dificuldade === "todos" || q.dificuldade === dificuldade);
 
-            mostrarPergunta();
-        }
+    indice = 0;
+    pontos = 0;
 
-        function mostrarPergunta() {
-            if (indice >= perguntas.length) {
-                finalizarQuiz();
-                return;
-            }
+    document.getElementById("dificuldade").style.display = "none";
+    document.getElementById("resultadoFinal").style.display = "none";
+    document.getElementById("quiz").style.display = "block";
 
-            const atual = perguntas[indice];
+    document.getElementById("tema-titulo").textContent = temaAtual.charAt(0).toUpperCase() + temaAtual.slice(1);
 
-            document.getElementById("pergunta").textContent = atual.pergunta;
-            document.getElementById("progresso").textContent = `Pergunta ${indice + 1} de ${perguntas.length}`;
+    mostrarPergunta();
+}
 
-            const altDiv = document.getElementById("alternativas");
-            altDiv.innerHTML = "";
+function mostrarPergunta() {
+    if (indice >= perguntas.length) {
+        finalizarQuiz();
+        return;
+    }
 
-            atual.alternativas.forEach((alt, i) => {
-                const btn = document.createElement("button");
-                btn.textContent = alt;
-                btn.onclick = () => verificarResposta(i);
-                altDiv.appendChild(btn);
-            });
-        }
+    const atual = perguntas[indice];
+    document.getElementById("pergunta").textContent = atual.pergunta;
+    document.getElementById("btn-proxima").style.display = "none";
 
-        function verificarResposta(resp) {
-            const atual = perguntas[indice];
-            if (resp === atual.correta) {
-                pontos++;
-            }
-            indice++;
-            mostrarPergunta();
-        }
+    const altDiv = document.getElementById("alternativas");
+    altDiv.innerHTML = "";
 
-        function finalizarQuiz() {
-            document.getElementById("quiz").style.display = "none";
-            document.getElementById("resultadoFinal").style.display = "block";
-            document.getElementById("pontuacao").textContent = `Você acertou ${pontos} de ${perguntas.length}!`;
-        }
+    atual.alternativas.forEach((alt, i) => {
+        const btn = document.createElement("button");
+        btn.textContent = alt;
+        btn.onclick = () => verificarResposta(i, btn);
+        altDiv.appendChild(btn);
+    });
 
-        function voltarMenu() {
-            document.getElementById("menu").style.display = "block";
-            document.getElementById("resultadoFinal").style.display = "none";
-        }
-    </script>
+    const barra = document.getElementById("barra-progresso");
+    barra.style.width = `${(indice / perguntas.length) * 100}%`;
+}
+
+function verificarResposta(resp, botao) {
+    const atual = perguntas[indice];
+    const botoes = document.querySelectorAll("#alternativas button");
+
+    botoes.forEach(b => b.disabled = true);
+    botoes.forEach(b => b.classList.remove("correct", "wrong"));
+
+    if (resp === atual.correta) {
+        pontos++;
+        botao.classList.add("correct");
+    } else {
+        botao.classList.add("wrong");
+        botoes[atual.correta].classList.add("correct");
+    }
+
+    document.getElementById("btn-proxima").style.display = "block";
+}
+
+function proximaPergunta() {
+    indice++;
+    mostrarPergunta();
+}
+
+function finalizarQuiz() {
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("resultadoFinal").style.display = "block";
+    document.getElementById("pontuacao").textContent = `Você acertou ${pontos} de ${perguntas.length}!`;
+}
+
+function voltarMenu() {
+    document.getElementById("menu").style.display = "block";
+    document.getElementById("resultadoFinal").style.display = "none";
+    document.getElementById("tema-titulo").textContent = "Quiz LPS";
+}
+</script>
 </body>
 </html>

@@ -1,4 +1,12 @@
 [
-  {"id":1,"pergunta":"Quem descobriu o Brasil?","alternativas":["Pedro Álvares Cabral","Cristóvão Colombo","Vasco da Gama","Fernão de Magalhães"],"correta":0},
-  {"id":2,"pergunta":"Em que ano ocorreu a Proclamação da República?","alternativas":["1889","1822","1500","1964"],"correta":0}
+  {"id":1,"pergunta":"Em que ano ocorreu a Revolução Francesa?","alternativas":["1789","1776","1804","1799"],"correta":0,"dificuldade":"facil"},
+  {"id":2,"pergunta":"Quem foi o primeiro imperador do Brasil?","alternativas":["Pedro I","Pedro II","D. João VI","Napoleão"],"correta":0,"dificuldade":"facil"},
+  {"id":3,"pergunta":"Em que ano caiu o Muro de Berlim?","alternativas":["1989","1991","1987","1990"],"correta":0,"dificuldade":"medio"},
+  {"id":4,"pergunta":"Qual guerra ficou conhecida como 'A Grande Guerra'?","alternativas":["Primeira Guerra Mundial","Segunda Guerra Mundial","Guerra Franco-Prussiana","Guerra Civil Americana"],"correta":0,"dificuldade":"facil"},
+  {"id":5,"pergunta":"Quem foi responsável pela Reforma Protestante?","alternativas":["Martinho Lutero","Calvino","Henrique VIII","John Knox"],"correta":0,"dificuldade":"medio"},
+  {"id":6,"pergunta":"Qual civilização construiu Machu Picchu?","alternativas":["Inca","Maya","Azteca","Egípcia"],"correta":0,"dificuldade":"facil"},
+  {"id":7,"pergunta":"Qual imperador romano foi assassinado em 44 a.C.?","alternativas":["Júlio César","Augusto","Nero","Calígula"],"correta":0,"dificuldade":"medio"},
+  {"id":8,"pergunta":"Qual tratado encerrou a Primeira Guerra Mundial?","alternativas":["Versalhes","Tordesilhas","Utrecht","Paris"],"correta":0,"dificuldade":"dificil"},
+  {"id":9,"pergunta":"Em que ano ocorreu a Independência do Brasil?","alternativas":["1822","1808","1889","1815"],"correta":0,"dificuldade":"facil"},
+  {"id":10,"pergunta":"Quem foi o líder da Revolução Cubana?","alternativas":["Fidel Castro","Che Guevara","Raúl Castro","Hugo Chávez"],"correta":0,"dificuldade":"medio"}
 ]

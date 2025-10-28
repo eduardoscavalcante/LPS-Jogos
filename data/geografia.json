@@ -1,4 +1,12 @@
 [
-  {"id":1,"pergunta":"Qual é a capital do Brasil?","alternativas":["São Paulo","Rio de Janeiro","Brasília","Belo Horizonte"],"correta":2},
-  {"id":2,"pergunta":"Qual o maior oceano do mundo?","alternativas":["Atlântico","Índico","Ártico","Pacífico"],"correta":3}
+  {"id":1,"pergunta":"Qual é a capital do Brasil?","alternativas":["São Paulo","Rio de Janeiro","Brasília","Belo Horizonte"],"correta":2,"dificuldade":"facil"},
+  {"id":2,"pergunta":"Qual o maior oceano do mundo?","alternativas":["Atlântico","Índico","Ártico","Pacífico"],"correta":3,"dificuldade":"facil"},
+  {"id":3,"pergunta":"Qual país tem a maior população?","alternativas":["China","Índia","EUA","Indonésia"],"correta":0,"dificuldade":"medio"},
+  {"id":4,"pergunta":"Qual a montanha mais alta do mundo?","alternativas":["Everest","K2","Kilimanjaro","Denali"],"correta":0,"dificuldade":"medio"},
+  {"id":5,"pergunta":"Qual país tem a maior floresta tropical?","alternativas":["Brasil","Congo","Indonésia","Peru"],"correta":0,"dificuldade":"facil"},
+  {"id":6,"pergunta":"Qual rio é o mais longo do mundo?","alternativas":["Nilo","Amazonas","Yangtzé","Mississippi"],"correta":1,"dificuldade":"medio"},
+  {"id":7,"pergunta":"Qual continente tem mais países?","alternativas":["África","Europa","Ásia","América"],"correta":0,"dificuldade":"facil"},
+  {"id":8,"pergunta":"Qual país tem a maior área territorial?","alternativas":["Rússia","Canadá","China","EUA"],"correta":0,"dificuldade":"medio"},
+  {"id":9,"pergunta":"Qual é o menor país do mundo em área?","alternativas":["Mônaco","Vaticano","Nauru","San Marino"],"correta":1,"dificuldade":"dificil"},
+  {"id":10,"pergunta":"Qual deserto é o maior do mundo?","alternativas":["Sahara","Gobi","Kalahari","Antártico"],"correta":3,"dificuldade":"medio"}
 ]
