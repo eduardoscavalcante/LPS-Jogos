@@ -15,6 +15,7 @@
         <h2>Escolha o jogo</h2>
         <button onclick="selecionarJogo('quiz')">Quiz</button>
         <button onclick="selecionarJogo('memory')">Memory Game</button>
+        <button onclick="selecionarJogo('soletra')">Soletra</button>
     </div>
 
     <!-- Menu do Quiz -->
@@ -63,9 +64,9 @@
 
     <div id="memory-dificuldade" style="display:none;">
         <h2>Escolha a dificuldade</h2>
-        <button onclick="iniciarMemory(dificuldade='facil')">Fácil</button>
-        <button onclick="iniciarMemory(dificuldade='medio')">Médio</button>
-        <button onclick="iniciarMemory(dificuldade='dificil')">Difícil</button>
+        <button onclick="iniciarMemory('facil')">Fácil</button>
+        <button onclick="iniciarMemory('medio')">Médio</button>
+        <button onclick="iniciarMemory('dificil')">Difícil</button>
     </div>
 
     <div id="memory-game" style="display:none;">
@@ -74,10 +75,32 @@
         <p id="pontuacaoMemory">Pares encontrados: 0</p>
         <button onclick="voltarMenu()">Voltar ao Menu</button>
     </div>
+
+    <!-- Soletra -->
+    <div id="soletra-menu" style="display:none;">
+        <h2>Escolha a dificuldade do Soletra</h2>
+        <button onclick="iniciarSoletra('facil')">Fácil</button>
+        <button onclick="iniciarSoletra('medio')">Médio</button>
+        <button onclick="iniciarSoletra('dificil')">Difícil</button>
+    </div>
+
+    <div id="soletra-game" style="display:none;">
+        <h2>Soletra</h2>
+        <div id="letras-container" class="letras-container"></div>
+        <input type="text" id="palavra-input" placeholder="Digite a palavra" autofocus>
+        <button onclick="enviarPalavra()">Enviar</button>
+        <button onclick="removerLetra()">Apagar Letra</button>
+        <p id="mensagem" class="mensagem"></p>
+        <p id="pontuacaoSoletra">Pontuação: 0</p>
+        <p id="contador-palavras">Palavras restantes: 0</p>
+        <div id="palavras-encontradas" class="palavras-encontradas"></div>
+        <button onclick="voltarMenu()">Voltar ao Menu</button>
+    </div>
 </div>
 
 <script src="js/quiz.js"></script>
 <script src="js/memory.js"></script>
+<script src="js/soletra.js"></script>
 <script>
 let jogoAtual = "";
 
@@ -90,6 +113,8 @@ function selecionarJogo(jogo) {
         document.getElementById("quiz-menu").style.display = "block";
     } else if (jogo === "memory") {
         document.getElementById("memory-menu").style.display = "block";
+    } else if (jogo === "soletra") {
+        document.getElementById("soletra-menu").style.display = "block";
     }
 }
 
@@ -110,6 +135,8 @@ function voltarMenu() {
     document.getElementById("memory-menu").style.display = "none";
     document.getElementById("memory-dificuldade").style.display = "none";
     document.getElementById("memory-game").style.display = "none";
+    document.getElementById("soletra-menu").style.display = "none";
+    document.getElementById("soletra-game").style.display = "none";
     document.getElementById("tema-titulo").textContent = "LPS Jogos";
 }
 </script>
