@@ -8,6 +8,7 @@ let totalPares = 0;
 let temaMemory = "filmes";
 let dificuldadeMemory = "facil";
 
+// Base da API
 const API_BASE = "https://quiz-lps.onrender.com";
 
 // Seleciona tema do Memory
@@ -73,22 +74,19 @@ async function virarCarta(div, index) {
         if (cartas[primeiraCarta.index] === cartas[segundaCarta.index]) {
             paresEncontrados++;
 
-            // Pontuação por par:
-            const usuario_id = localStorage.getItem("usuario_id") || "anonimo";
+            // Pontos por dificuldade
             let pontos = 1;
             if (dificuldadeMemory === "medio") pontos = 2;
             else if (dificuldadeMemory === "dificil") pontos = 3;
 
-            try {
-                await fetch(`${API_BASE}/pontuacao/${usuario_id}/${pontos}`, {
-                    method: "POST"
-                });
-
-                if (typeof buscarPontuacaoTotal === "function") {
-                    buscarPontuacaoTotal();
+            // Adiciona pontos ao backend
+            const usuarioId = localStorage.getItem("usuarioId");
+            if (usuarioId) {
+                try {
+                    await fetch(`${API_BASE}/pontuacao/${usuarioId}/${pontos}`, { method: 'POST' });
+                } catch (err) {
+                    console.error("Erro ao registrar pontos:", err);
                 }
-            } catch (err) {
-                console.error("Erro ao registrar pontos:", err);
             }
 
             setTimeout(() => {
@@ -110,7 +108,6 @@ async function virarCarta(div, index) {
     }
 }
 
-
 function resetCartas() {
     primeiraCarta = null;
     segundaCarta = null;
@@ -118,29 +115,22 @@ function resetCartas() {
     atualizarPontuacao();
 }
 
-async function fimMemory() {
-    await registrarPontosBackend();
+function fimMemory() {
     setTimeout(() => {
         alert(`Parabéns! Você encontrou todos os pares!`);
     }, 300);
 }
 
-// ✅ Apenas adicionamos o sistema de pontos
-async function registrarPontosBackend() {
-    try {
-        await fetch(`${API_BASE}/pontos/memory`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" }
-        });
-        if (typeof buscarPontuacaoTotal === "function") {
-            buscarPontuacaoTotal();
-        }
-    } catch (err) {
-        console.error("Erro ao registrar pontos:", err);
-    }
+function atualizarPontuacao() {
+    document.getElementById("pontuacaoMemory").textContent = `Pares encontrados: ${paresEncontrados} / ${totalPares}`;
 }
 
-function atualizarPontuacao() {
-    document.getElementById("pontuacaoMemory").textContent = 
-        `Pares encontrados: ${paresEncontrados} / ${totalPares}`;
-}
+// Responsividade para mobile
+window.addEventListener('resize', () => {
+    const tabuleiro = document.getElementById("tabuleiro");
+    if (window.innerWidth <= 600) {
+        tabuleiro.style.gridTemplateColumns = "repeat(3, 70px)";
+    } else {
+        tabuleiro.style.gridTemplateColumns = `repeat(${Math.sqrt(cartas.length)}, 80px)`;
+    }
+});
