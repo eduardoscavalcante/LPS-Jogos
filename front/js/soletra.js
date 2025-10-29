@@ -1,71 +1,63 @@
-// soletra.js - versão completa com dificuldade e entrada por teclado/click, mobile-friendly
+// soletra.js - versão completa com dificuldade, teclado/click e pontuação global
 
-// Bancos de palavras por dificuldade
 const bancos = {
     facil: {
         letras: ['C','A','M','I','N','H','D'],
         central: 'H',
-        palavras: [
-            "CHIA","CHAMA","MANHA","MANHÃ","MINHA","ACHADA","AMANHÃ",
-            "CANCHA","CHIADA","MANCHA","CHACINA","CHAMADA","DANINHA",
-            "INCHADA","MACHADA","MAMINHA","NINHADA","ACANHADA","AMANHADA",
-            "ANINHADA","CHINCADA","MANCHADA","CAMINHADA","MACHADADA"
-        ]
+        palavras: ["CHIA","CHAMA","MANHA","MANHÃ","MINHA","ACHADA","AMANHÃ",
+                   "CANCHA","CHIADA","MANCHA","CHACINA","CHAMADA","DANINHA",
+                   "INCHADA","MACHADA","MAMINHA","NINHADA","ACANHADA","AMANHADA",
+                   "ANINHADA","CHINCADA","MANCHADA","CAMINHADA","MACHADADA"]
     },
     medio: {
         letras: ['O','B','R','I','G','A','T'],
         central: 'G',
-        palavras: [
-            "AGIO","AGIR","AGRO","BAGA","GABO","GAGA","GAGO","GARI",
-            "GATA","GATO","GIBI","GIRA","GIRO","GOGO","GORO","GOTA",
-            "GOTO","GRAO","IOGA","OGRO","TOGA","AGATA","AGITO","AGORA",
-            "BRIGA","GABAR","GAITA","GARBO","GAROA","GARRA","GIBAO",
-            "GIRAR","GIRIA","GORAR","GORRO","GRATA","GRATO","GRITO",
-            "ORGAO","ORGIA","RIGOR","ROGAR","TRAGO","TRIGO","ABRIGO",
-            "AGIOTA","AGITAR","AGRIAO","ARTIGO","BIGATO","BRIGAR","GAIATA",
-            "GAIATO","GAROAR","GAROTA","GAROTO","GARRIR","GOIABA","GRITAR",
-            "OBRIGA","TOBOGA","TRAGAR","ABRIGAR","AGARRAR","AGIOTAR",
-            "AGRARIA","AGRARIO","ARROGAR","BARRIGA","GAROTAR","GARRAIO",
-            "GATARIA","IRRIGAR","OBRIGAR","AGAIATAR","AGAROTAR","ARRAIGAR",
-            "GABARITO","GABIROBA","GARROTAR","GATARRAO","GOROROBA","GRITARIA",
-            "GABATORIO","GIRATORIA","GIRATORIO","ROGATORIA","ROGATORIO",
-            "IRRIGATORIO","OBRIGATORIA","OBRIGATORIO"
-        ]
+        palavras: ["AGIO","AGIR","AGRO","BAGA","GABO","GAGA","GAGO","GARI",
+                   "GATA","GATO","GIBI","GIRA","GIRO","GOGO","GORO","GOTA",
+                   "GOTO","GRAO","IOGA","OGRO","TOGA","AGATA","AGITO","AGORA",
+                   "BRIGA","GABAR","GAITA","GARBO","GAROA","GARRA","GIBAO",
+                   "GIRAR","GIRIA","GORAR","GORRO","GRATA","GRATO","GRITO",
+                   "ORGAO","ORGIA","RIGOR","ROGAR","TRAGO","TRIGO","ABRIGO",
+                   "AGIOTA","AGITAR","AGRIAO","ARTIGO","BIGATO","BRIGAR","GAIATA",
+                   "GAIATO","GAROAR","GAROTA","GAROTO","GARRIR","GOIABA","GRITAR",
+                   "OBRIGA","TOBOGA","TRAGAR","ABRIGAR","AGARRAR","AGIOTAR",
+                   "AGRARIA","AGRARIO","ARROGAR","BARRIGA","GAROTAR","GARRAIO",
+                   "GATARIA","IRRIGAR","OBRIGAR","AGAIATAR","AGAROTAR","ARRAIGAR",
+                   "GABARITO","GABIROBA","GARROTAR","GATARRAO","GOROROBA","GRITARIA",
+                   "GABATORIO","GIRATORIA","GIRATORIO","ROGATORIA","ROGATORIO",
+                   "IRRIGATORIO","OBRIGATORIA","OBRIGATORIO"]
     },
     dificil: {
         letras: ['P','E','D','I','A','T','R'],
         central: 'P',
-        palavras: [
-            "APTA","PAPA","PARA","PATA","PATÊ","PÊRA","PIAR","PÍER","PIPA",
-            "PIRA","PITA","PITI","PREÁ","RAPA","RAPÉ","RIPA","TAPA","APEAR",
-            "ARPAR","ETAPA","PADRE","PAETÊ","PAPAI","PAPAR","PARAR","PARDA",
-            "PARIR","PARTE","PEDIR","PEDRA","PERDA","PIADA","PIRAR","PRAIA",
-            "PRATA","PRETA","RAPAR","RIPAR","TAIPA","TAPAR","TAPIR","TRIPA",
-            "TRIPÉ","ADEPTA","APARAR","APARTE","APATIA","APIPAR","APITAR",
-            "ARPEAR","PAIRAR","PAPADA","PAPAIA","PAPEAR","PARADA","PAREAR",
-            "PAREDE","PARIDA","PARTIR","PATADA","PATETA","PÁTRIA","PEDIDA",
-            "PEDRAR","PEIDAR","PEITAR","PEPITA","PERDER","PERITA","PIPETA",
-            "PIRADA","PIRATA","PIRIRI","PIRITA","PITADA","PITAIA","PREDAR",
-            "RAPADA","RÁPIDA","RAPTAR","REPTAR","RIPADA","TAPADA","TAPEAR",
-            "TAPERA","TAPETE","TÉPIDA","TREPAR","ADAPTAR","APARADA","APARTAR",
-            "APEDRAR","APERTAR","APETITE","APIEDAR","APITADA","ARREPIA",
-            "DEPARAR","PADARIA","PADEIRA","PADREAR","PAPEIRA","PAREADA",
-            "PARTIDA","PEDRADA","PEITADA","PERDIDA","PEREIRA","PIEDADE",
-            "PITEIRA","PRATADA","PRATEAR","RAPTADA","REPARAR","REPETIR",
-            "REPTADA","TAPEADA","TERAPIA","TREPADADA","ADAPTADA","APARTADA",
-            "APÁTRIDA","APERREAR","APERTADA","APETITAR","ARREPIAR","ATAPETAR",
-            "DEPARTIR","DEPREDAR","DERRAPAR","PADIEIRA","PARIDADE","PARREIRA",
-            "PARTEIRA","PATARATA","PATETEAR","PEDIATRA","PEDRARIA","PEDREIRA",
-            "PIRATEAR","PRADARIA","PRATARIA","PRATEADA","PREPARAR","PRETERIR",
-            "RAPADEIRA","READAPTAR","REPARTIDA","REPATRIAR","TREPIDADA",
-            "TRIPARTIR","APARADORA","PARAPEITAR","PARTIDÁRIA","PATARATADA",
-            "PATARATEAR","PERPETRADA","READAPTADA","REPATRIADA","TREPADEIRA",
-            "TRIPARTIDA","TRIPARTITE","APARTIDÁRIA","APERTADEIRA","REPARADEIRA"
-        ]
+        palavras: ["APTA","PAPA","PARA","PATA","PATÊ","PÊRA","PIAR","PÍER","PIPA",
+                   "PIRA","PITA","PITI","PREÁ","RAPA","RAPÉ","RIPA","TAPA","APEAR",
+                   "ARPAR","ETAPA","PADRE","PAETÊ","PAPAI","PAPAR","PARAR","PARDA",
+                   "PARIR","PARTE","PEDIR","PEDRA","PERDA","PIADA","PIRAR","PRAIA",
+                   "PRATA","PRETA","RAPAR","RIPAR","TAIPA","TAPAR","TAPIR","TRIPA",
+                   "TRIPÉ","ADEPTA","APARAR","APARTE","APATIA","APIPAR","APITAR",
+                   "ARPEAR","PAIRAR","PAPADA","PAPAIA","PAPEAR","PARADA","PAREAR",
+                   "PAREDE","PARIDA","PARTIR","PATADA","PATETA","PÁTRIA","PEDIDA",
+                   "PEDRAR","PEIDAR","PEITAR","PEPITA","PERDER","PERITA","PIPETA",
+                   "PIRADA","PIRATA","PIRIRI","PIRITA","PITADA","PITAIA","PREDAR",
+                   "RAPADA","RÁPIDA","RAPTAR","REPTAR","RIPADA","TAPADA","TAPEAR",
+                   "TAPERA","TAPETE","TÉPIDA","TREPAR","ADAPTAR","APARADA","APARTAR",
+                   "APEDRAR","APERTAR","APETITE","APIEDAR","APITADA","ARREPIA",
+                   "DEPARAR","PADARIA","PADEIRA","PADREAR","PAPEIRA","PAREADA",
+                   "PARTIDA","PEDRADA","PEITADA","PERDIDA","PEREIRA","PIEDADE",
+                   "PITEIRA","PRATADA","PRATEAR","RAPTADA","REPARAR","REPETIR",
+                   "REPTADA","TAPEADA","TERAPIA","TREPADADA","ADAPTADA","APARTADA",
+                   "APÁTRIDA","APERREAR","APERTADA","APETITAR","ARREPIAR","ATAPETAR",
+                   "DEPARTIR","DEPREDAR","DERRAPAR","PADIEIRA","PARIDADE","PARREIRA",
+                   "PARTEIRA","PATARATA","PATETEAR","PEDIATRA","PEDRARIA","PEDREIRA",
+                   "PIRATEAR","PRADARIA","PRATARIA","PRATEADA","PREPARAR","PRETERIR",
+                   "RAPADEIRA","READAPTAR","REPARTIDA","REPATRIAR","TREPIDADA",
+                   "TRIPARTIR","APARADORA","PARAPEITAR","PARTIDÁRIA","PATARATADA",
+                   "PATARATEAR","PERPETRADA","READAPTADA","REPATRIADA","TREPADEIRA",
+                   "TRIPARTIDA","TRIPARTITE","APARTIDÁRIA","APERTADEIRA","REPARADEIRA"]
     }
 };
 
-// Variáveis globais
 let letras = [];
 let letraCentral = '';
 let palavrasValidas = [];
@@ -73,7 +65,7 @@ let palavrasEncontradas = [];
 let pontuacao = 0;
 let palavraAtual = "";
 
-// Inicializa o jogo com dificuldade selecionada
+// Inicializa jogo com dificuldade
 function gerarJogo(dificuldade) {
     const banco = bancos[dificuldade];
     letras = [...banco.letras];
@@ -153,8 +145,14 @@ function enviarPalavra() {
     mensagem.textContent = "Correto!";
 
     const isPangrama = letras.every(l => input.includes(l));
-    pontuacao += isPangrama ? 2 : 1;
+    const pontosGanhos = isPangrama ? 2 : 1;
+    pontuacao += pontosGanhos;
     palavraAtual = "";
+
+    // Adiciona ponto(s) ao mesmo usuário global do Quiz e Memory
+    if (typeof adicionarPontos === "function") {
+        adicionarPontos(pontosGanhos);
+    }
 
     atualizarInterface();
     atualizarListaPalavras();
@@ -167,7 +165,7 @@ function atualizarInterface() {
     document.getElementById('pontuacaoSoletra').textContent = `Pontuação: ${pontuacao}`;
 }
 
-// Atualiza lista visual de palavras encontradas e contador
+// Atualiza lista de palavras encontradas e contador
 function atualizarListaPalavras() {
     const container = document.getElementById('palavras-encontradas');
     container.innerHTML = '';
@@ -191,7 +189,7 @@ function shuffleLetras() {
     renderLetras();
 }
 
-// Inicia o jogo com dificuldade
+// Inicia jogo com dificuldade
 function iniciarSoletra(dificuldade) {
     document.getElementById("soletra-menu").style.display = "none";
     document.getElementById("soletra-game").style.display = "block";
@@ -206,7 +204,7 @@ document.getElementById('palavra-input').addEventListener('keydown', function(e)
     } else if(e.key === "Enter") {
         enviarPalavra();
         e.preventDefault();
-    } else if(e.key.length === 1) { // letras e caracteres
+    } else if(e.key.length === 1) {
         const letra = e.key.toUpperCase();
         if(letras.includes(letra)) {
             palavraAtual += letra;
@@ -216,7 +214,7 @@ document.getElementById('palavra-input').addEventListener('keydown', function(e)
     }
 });
 
-// Função para remover acentos
+// Remove acentos
 function removerAcentos(str) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
