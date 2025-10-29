@@ -81,6 +81,8 @@ uvicorn main:app --reload
 
 O frontend consome automaticamente o microservice para pontuação e dados dos jogos.
 
+https://eduardoscavalcante.github.io/LPS-Jogos/front/index.html
+
 ## Estrutura de Pontuação
 Usuário identificado por UUID único (usuarioId)
 Pontos adicionados para cada acerto no Quiz, Memory ou Soletra
