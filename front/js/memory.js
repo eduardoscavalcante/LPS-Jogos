@@ -8,22 +8,12 @@ let totalPares = 0;
 let temaMemory = "filmes";
 let dificuldadeMemory = "facil";
 
-// Base da API
-const API_BASE = "https://quiz-lps.onrender.com";
-
-// Seleciona tema do Memory
-function selecionarMemoryTema(tema) {
-    temaMemory = tema;
-    document.getElementById("memory-menu").style.display = "none";
-    document.getElementById("memory-dificuldade").style.display = "block";
-}
-
 // Inicia Memory consumindo a API do microservice
 async function iniciarMemory(dificuldade = dificuldadeMemory) {
     dificuldadeMemory = dificuldade;
 
     try {
-        const response = await fetch(`${API_BASE}/memory/${temaMemory}/${dificuldade}`);
+        const response = await fetch(`https://quiz-lps.onrender.com/memory/${temaMemory}/${dificuldade}`);
         const data = await response.json();
 
         cartas = data.cartas;
@@ -59,7 +49,7 @@ function renderizarTabuleiro() {
     });
 }
 
-async function virarCarta(div, index) {
+function virarCarta(div, index) {
     if (bloqueado || div.classList.contains("aberta")) return;
 
     div.classList.add("aberta");
@@ -73,20 +63,9 @@ async function virarCarta(div, index) {
 
         if (cartas[primeiraCarta.index] === cartas[segundaCarta.index]) {
             paresEncontrados++;
-
-            // Pontos por dificuldade
-            let pontos = 1;
-            if (dificuldadeMemory === "medio") pontos = 2;
-            else if (dificuldadeMemory === "dificil") pontos = 3;
-
-            // Adiciona pontos ao backend
-            const usuarioId = localStorage.getItem("usuarioId");
-            if (usuarioId) {
-                try {
-                    await fetch(`${API_BASE}/pontuacao/${usuarioId}/${pontos}`, { method: 'POST' });
-                } catch (err) {
-                    console.error("Erro ao registrar pontos:", err);
-                }
+            // Adiciona ponto ao mesmo usuário do quiz
+            if (typeof adicionarPontos === "function") {
+                adicionarPontos(1);
             }
 
             setTimeout(() => {
@@ -95,7 +74,6 @@ async function virarCarta(div, index) {
                 resetCartas();
                 if (paresEncontrados === totalPares) fimMemory();
             }, 500);
-
         } else {
             setTimeout(() => {
                 primeiraCarta.div.classList.remove("aberta");
@@ -124,13 +102,3 @@ function fimMemory() {
 function atualizarPontuacao() {
     document.getElementById("pontuacaoMemory").textContent = `Pares encontrados: ${paresEncontrados} / ${totalPares}`;
 }
-
-// Responsividade para mobile
-window.addEventListener('resize', () => {
-    const tabuleiro = document.getElementById("tabuleiro");
-    if (window.innerWidth <= 600) {
-        tabuleiro.style.gridTemplateColumns = "repeat(3, 70px)";
-    } else {
-        tabuleiro.style.gridTemplateColumns = `repeat(${Math.sqrt(cartas.length)}, 80px)`;
-    }
-});
